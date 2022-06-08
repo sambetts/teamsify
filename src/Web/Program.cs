@@ -1,18 +1,11 @@
 using Microsoft.Identity.Web;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Models;
 using System.Diagnostics;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-var config = new Config(builder.Configuration);
-
-builder.Services.AddSingleton(config);
 builder.Services.AddControllersWithViews();
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
 builder.Services.AddApplicationInsightsTelemetry(builder.Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
 
 var app = builder.Build();

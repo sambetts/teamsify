@@ -12,3 +12,5 @@
 /src/Web/.config
 /src/Web/ClientApp/.env
 /src/API/Web.config
+/src/API/obj/Release
+/src/UnitTests/obj/Release

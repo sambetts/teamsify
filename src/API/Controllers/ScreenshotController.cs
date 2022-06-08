@@ -11,7 +11,7 @@ namespace API.Controllers
     public class ScreenshotController : ApiController
     {
 
-        // GET api/Screenshot?url={url}
+        // GET api/Screenshot/Get?url={url}
         public HttpResponseMessage Get(string url)
         {
             // https://github.com/haga-rak/Freezer/wiki

@@ -4,6 +4,7 @@ import { WizardButtons } from '../WizardButtons';
 import { Rings } from 'react-loader-spinner';
 
 export const SitePreview: React.FC<{ url: string, siteConfirmed: Function, siteCancel: Function }> = (props) => {
+  const apiRoot: string | undefined = process.env.REACT_APP_API_BASE;
 
   const [imgPreview, setImgPreview] = React.useState<string | null>(null);
   const [loadError, setLoadError] = React.useState<boolean>(false);
@@ -21,7 +22,7 @@ export const SitePreview: React.FC<{ url: string, siteConfirmed: Function, siteC
   }
 
   useEffect(() => {
-    fetch("https://localhost:44373/api/Screenshot?url=" + props.url, { mode: 'cors' })
+    fetch(apiRoot + "/api/Screenshot/Get?url=" + props.url, { mode: 'cors' })
       .then(res => {
         res.text().then(body => {
           if (!res.ok) {

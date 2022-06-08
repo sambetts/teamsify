@@ -14,7 +14,7 @@ function Copyright() {
         <Grid item>
           <object data="imgs/github.svg" width="32" height="32" style={{ display: "block" }}>GitHub Logo</object>
         </Grid>
-        <Grid item><a href='' style={{textDecoration: 'none'}}>Project on GitHub</a>
+        <Grid item><a href='https://github.com/sambetts/teamsify' style={{textDecoration: 'none'}}>Project on GitHub</a>
         </Grid>
       </Grid>
     </Typography>
