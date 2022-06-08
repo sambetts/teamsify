@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/src/.vs
+/src/API/bin
+/src/API/obj/Debug
+/src/packages
+/src/UnitTests/bin/Debug
+/src/UnitTests/obj/Debug
+/src/Web/ClientApp/.vscode
+/src/Web/.config
+/src/Web/ClientApp/.env
+/src/API/Web.config
