@@ -14,3 +14,14 @@
 /src/API/Web.config
 /src/API/obj/Release
 /src/UnitTests/obj/Release
+/src/BrowserSnapshotWorkerRole/obj/Debug
+*.user
+/src/BrowserSnapshotCloudService/ServiceConfiguration.Local.cscfg
+/src/BrowserSnapshotCloudService/ServiceConfiguration.Cloud.cscfg
+/src/BrowserSnapshotCloudService/obj/Debug
+/src/BrowserSnapshotWorkerRole/bin/Debug
+/src/WorkerRoleWithSBQueue1/obj/Debug
+/src/BrowserSnapshotCloudService/bin/Debug
+/src/BrowserSnapshotCloudService/csx/Debug
+/src/Models/obj
+/src/Models/bin/Debug/netstandard2.0
