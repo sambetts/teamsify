@@ -13,8 +13,14 @@ namespace API.Controllers
         // GET api/Screenshot/Get?url={url}
         public HttpResponseMessage Get(string url)
         {
+            var xStr = System.Configuration.ConfigurationManager.AppSettings["ScreenshotX"];
+            var yStr = System.Configuration.ConfigurationManager.AppSettings["ScreenshotY"];
+            int x = 800, y = 550;
+            int.TryParse(xStr, out x);
+            int.TryParse(yStr, out y);
+
             var options = new ChromeOptions();
-            options.AddArgument("--window-size=800,550");
+            options.AddArgument($"--window-size={x},{y}");
 
             var driver = new ChromeDriver(options);
 
