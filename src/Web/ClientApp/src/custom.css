@@ -33,10 +33,15 @@ code {
   width: 500px;
 }
 
-.previewWeb {
+.previewWindow {
   position: absolute;
   top: 60px;
   left: 65px;
+}
+
+.previewWindow iframe {
+  width: 800px;
+  height: 550px;
 }
 
 .wizardButtons {

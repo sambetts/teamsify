@@ -1,65 +1,43 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { WizardButtons } from '../WizardButtons';
-import { Rings } from 'react-loader-spinner';
+import { Button } from '@mui/material';
 
 export const SitePreview: React.FC<{ url: string, siteConfirmed: Function, siteCancel: Function }> = (props) => {
-  const apiRoot: string | undefined = process.env.REACT_APP_API_BASE;
-
-  const [imgPreview, setImgPreview] = React.useState<string | null>(null);
-  const [loadError, setLoadError] = React.useState<boolean>(false);
-
-  const handleError = () => {
-    alert('Got an error loading the preview. Check JavaScript console for more info.');
-    setLoadError(true);
-  }
-
-  const loadImg = (imgBase64: string) => {
-
-    const imgSource = "data:image/png;base64, " + imgBase64;
-    setImgPreview(imgSource);
-
-  }
-
-  useEffect(() => {
-    fetch(apiRoot + "/api/Screenshot/Get?url=" + props.url, { mode: 'cors' })
-      .then(res => {
-        res.text().then(body => {
-          if (!res.ok) {
-            handleError();
-          }
-          else
-            loadImg(body);
-        })
-      })
-      .catch(err => handleError());
-  }, [props.url]);
+  const [showSiteSetupRequirements, setShowSiteSetupRequirements] = React.useState<boolean>(false);
+  const contentRef = React.useRef<HTMLIFrameElement>(null)
 
   return (
     <>
-      <div id='webPreview'>
-
+      {!showSiteSetupRequirements ?
         <>
-          <img src='imgs/TeamsPreview.png' alt='Teams preview' />
+          <div id='webPreview'>
 
-          <div className='previewWeb'>
-            {!loadError ?
-              <>
-                {imgPreview ?
-                  <img src={imgPreview} alt="Preview" />
-                  :
-                  <Rings ariaLabel="loading-indicator" color='#43488F' />
-                }
-              </>
-              :
-              <div>Got error loading site preview. It's complicated.</div>
-            }
+            <img src='imgs/TeamsPreview.png' alt='Teams preview' />
+            <div className='previewWindow'>
+              <iframe src={props.url} ref={contentRef} title="Preview" />
+            </div>
+
+            <WizardButtons nextClicked={() => props.siteConfirmed()} nextText="Looks Good - Build the App"
+              previousText="Page Isn't Loading" previousClicked={() => setShowSiteSetupRequirements(true)} />
+
           </div>
         </>
+        :
+        <>
+          <h3>Website Incompatible with Teams Personal Tabs</h3>
+          <p>Alas, this website isn't configured to allow it to be shown in Teams personal tabs (or any iframe).</p>
+          <p>You need to add this HTTP header to your website responses, for at least the page '{props.url}':</p>
+          <ul>
+            <li>Content-Security-Policy: frame-ancestors teams.microsoft.com *.teams.microsoft.com *.skype.com teamsify.app</li>
+          </ul>
+          <p>That tells the browser you're looking at right now that your website can be loaded in an IFrame, from those domains.</p>
+          <p>More info: <a href='https://docs.microsoft.com/en-us/microsoftteams/platform/tabs/how-to/tab-requirements'>https://docs.microsoft.com/en-us/microsoftteams/platform/tabs/how-to/tab-requirements</a></p>
+          <Button variant="outlined" size="large" onClick={() => props.siteCancel()}>Go Back</Button>
+        </>
+      }
 
-      </div>
-      <WizardButtons nextClicked={() => props.siteConfirmed()} nextText="Looks Good - Build the App"
-        previousText="Go Back" previousClicked={() => props.siteCancel()} />
+
     </>
 
   );
