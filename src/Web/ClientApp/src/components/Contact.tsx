@@ -81,19 +81,21 @@ export const Contact: React.FC<{}> = () => {
   return (
     <div>
       <h3>Contact Me</h3>
-      <p>This site was written &amp; designed by Sam Betts. Get in contact:</p>
+      <p>This site was written &amp; designed by <a href='https://www.linkedin.com/in/sambettscv/'>Sam Betts</a>, an MSFT employee. 
+      </p>
+      <p>Email me with the form below if you have any feedback:</p>
 
       {!emailSent ?
         <form>
           <TextField type="email" value={emailAddress}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmailAddress((e.target as HTMLInputElement).value)}
-            label="Your email" required />
+            label="Your email" required style={{width: 400}} />
 
           <div>
 
             <TextField multiline value={message} rows='4'
               onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setMessage((e.target as HTMLTextAreaElement).value)}
-              placeholder="Your message" required />
+              placeholder="Your message" required style={{width: 400}} />
           </div>
           <Captcha onChange={onCapChange} />
 

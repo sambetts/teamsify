@@ -10,22 +10,29 @@ import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 import BackupOutlinedIcon from '@mui/icons-material/BackupOutlined';
 import FormatListNumberedRtlOutlinedIcon from '@mui/icons-material/FormatListNumberedRtlOutlined';
 
-export const HomePage: React.FC<{ wizardStageChange: Function }> = (props) => {
+interface HomeProps
+{ 
+  wizardStageChange: Function, 
+  setAppDetails: Function, 
+  appDetails: AppDetails | null,
+  sessionId: string | null, 
+  setSessionId : Function
+}
+
+export const HomePage: React.FC<HomeProps> = (props) => {
 
   const [currentStage, setCurrentStage] = React.useState<Stage>(Stage.Home);
   const [url, setUrl] = React.useState<string>("");
-  const [sessionId, setSessionId] = React.useState<string | null>(null);
-  const [appDetails, setAppDetails] = React.useState<AppDetails | null>(null);
 
 
   const siteSelect = (url: string, sessionId: string) => {
     setUrl(url);
-    setSessionId(sessionId);
+    props.setSessionId(sessionId);
     setStage(Stage.VerifySite);
   }
 
   const appDetailsSet = (details: AppDetails) => {
-    setAppDetails(details);
+    props.setAppDetails(details);
     setStage(Stage.Download);
   }
 
@@ -70,6 +77,13 @@ export const HomePage: React.FC<{ wizardStageChange: Function }> = (props) => {
               <Button variant="contained" size="large" onClick={() => setStage(Stage.SiteSelection)}>Start Teamsify Wizard</Button>
             </Grid>
 
+            {props.appDetails !== null &&
+
+              <Grid container justifyContent="center" style={{ marginTop: 20 }}>
+                <Button variant="outlined" size="large" onClick={() => setStage(Stage.Download)}>Download Last Created App</Button>
+              </Grid>
+            }
+
           </div>);
 
       case Stage.SiteSelection:
@@ -80,10 +94,10 @@ export const HomePage: React.FC<{ wizardStageChange: Function }> = (props) => {
       case Stage.EnterData:
         return <AppDetailsForm detailsDone={(details: AppDetails) => appDetailsSet(details)} cancel={() => setStage(Stage.Home)} />
       case Stage.Download:
-        if (sessionId)
-          return <AppDownload details={appDetails!} url={url}
+        if (props.sessionId)
+          return <AppDownload details={props.appDetails!} url={url}
             startOver={() => setStage(Stage.Home)}
-            goBack={() => setStage(Stage.EnterData)} sessionId={sessionId} />
+            goBack={() => setStage(Stage.EnterData)} sessionId={props.sessionId} />
         else
           return <p>Invalid session</p>
       default:
@@ -94,6 +108,8 @@ export const HomePage: React.FC<{ wizardStageChange: Function }> = (props) => {
   return (
     <div>
       {renderSwitch(currentStage)}
+
+
     </div>
   );
 };

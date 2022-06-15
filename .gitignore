@@ -28,3 +28,4 @@
 /src/Tests/bin/Debug/net6.0
 /src/Tests/obj
 /src/Web/appsettings.json
+src/Tests/bin/Release/net6.0/CoverletSourceRootsMapping

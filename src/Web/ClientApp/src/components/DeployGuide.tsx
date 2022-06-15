@@ -7,7 +7,7 @@ export const DeployGuide: React.FC<{}> = () => {
     <div>
       <h3>Quick Start Guide</h3>
       <p>Once you've completed wizard here and downloaded your app file, you need to deploy to Teams and distribute to your users. For this you'll need Teams administrator rights</p>
-      <p>From the Teams Admin page, find "Manage Apps" and upload your zip file.</p>
+      <p>From the <a href='https://docs.microsoft.com/en-us/microsoftteams/manage-teams-in-modern-portal'>Teams Admin center</a>, find "Manage Apps" and upload your zip file.</p>
       <img src='imgs/Upload1.jpg' alt='Upload zip' />
       <p>You can edit the manifest file in the zip if you'd like to change any details too.</p>
       <p>Once uploaded, click the link to see it in your app store:</p>
