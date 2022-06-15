@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "dgSpecHash": "kvP/Zk568qvrf7pk+I4yHiUYjaLLz0ZJxoSDZwOCfzVWegQuOfN3AqUTK/5BT/u10i40mQ172JYpFSNop4RHXg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\sambetts\\source\\repos\\teamsify\\src\\APIs\\APIs.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sambetts\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\sambetts\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\sambetts\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\sambetts\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\sambetts\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\sambetts\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512",
+    "C:\\Users\\sambetts\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512"
+  ],
+  "logs": []
+}

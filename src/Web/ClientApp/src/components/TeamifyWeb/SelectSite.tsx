@@ -7,8 +7,6 @@ import { Captcha } from 'components/Captcha';
 
 export const SelectSite: React.FC<{ siteSelected: Function }> = (props) => {
 
-  const apiRoot: string | undefined = process.env.REACT_APP_API_BASE;
-
   const [captchaValue, setCaptchaValue] = React.useState<string | null>();
   const [url, setUrl] = React.useState<string>("");
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
@@ -30,7 +28,7 @@ export const SelectSite: React.FC<{ siteSelected: Function }> = (props) => {
 
     if (!error) {
       setIsLoading(true);
-      fetch(apiRoot + "/api/TeamsApp/NewSession?captchaResponseOnPage=" + captchaValue, {
+      fetch("/api/TeamsApp/NewSession?captchaResponseOnPage=" + captchaValue, {
         mode: 'cors',
         method: "POST"
       })
@@ -70,7 +68,7 @@ export const SelectSite: React.FC<{ siteSelected: Function }> = (props) => {
         <p style={{ marginTop: 20 }}>Confirm you are a real person:</p>
         <Captcha onChange={onCapChange} />
 
-        <p style={{marginTop: 50}}>Next we'll take a photo of the page...</p>
+        <p style={{marginTop: 50}}>Next we'll check if the page is compatible...</p>
         {!isLoading ?
           <WizardButtons nextClicked={() => startSession()} nextText="Teamsify This Website"
             disabled={captchaValue === null || captchaValue === undefined} />

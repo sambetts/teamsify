@@ -13,12 +13,11 @@ interface Props {
 }
 export const AppDownload: React.FC<Props> = (props) => {
   const [downloadRedirectUrl, setDownloadRedirectUrl] = React.useState<string | null>();
-  const apiRoot: string | undefined = process.env.REACT_APP_API_BASE;
 
   const downloadApp = () => {
     console.log(JSON.stringify(props.details));
 
-    fetch(apiRoot + "/api/TeamsApp/CreateApp?url=" + props.url + "&sessionId=" + props.sessionId,
+    fetch("/api/TeamsApp/CreateApp?url=" + props.url + "&sessionId=" + props.sessionId,
       {
         mode: 'cors',
         method: "POST",
@@ -34,7 +33,7 @@ export const AppDownload: React.FC<Props> = (props) => {
           }
           else {
             // Response is a URL back to our service which will generate a redirect to blob storage if GET-ed
-            const downloadUrl: string = `${apiRoot}/api/TeamsApp/DownloadApp?fileUrl=${body}&sessionId=${props.sessionId}`;
+            const downloadUrl: string = `/api/TeamsApp/DownloadApp?fileUrl=${body}&sessionId=${props.sessionId}`;
             setDownloadRedirectUrl(downloadUrl);
           }
 

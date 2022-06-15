@@ -1,14 +1,19 @@
 using Microsoft.Identity.Web;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using System.Diagnostics;
-
+using Web.Config;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddApplicationInsightsTelemetry(builder.Configuration["APPINSIGHTS_CONNECTIONSTRING"]);
 
+
+var config = new WebAppConfig(builder.Configuration);
+builder.Services.AddSingleton(config);
+
 var app = builder.Build();
+
 
 try
 {

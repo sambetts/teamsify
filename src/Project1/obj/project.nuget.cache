@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "jennb7PR/NEb+LKADamaknstHPIgqXWXFMa+DvTs9WXn9ROq4HzyOfnFMiMned9WvJIIIRbUldXfsF1bXyKa2g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\sambetts\\source\\repos\\teamsify\\src\\Project1\\Project1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\sambetts\\.nuget\\packages\\microsoft.aspnetcore.spaproxy\\6.0.6\\microsoft.aspnetcore.spaproxy.6.0.6.nupkg.sha512"
+  ],
+  "logs": []
+}

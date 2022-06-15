@@ -70,3 +70,9 @@ code {
 {
   width: 42px;
 }
+
+.httpHeader
+{
+  font-size: large;
+  font-weight: 600;
+}

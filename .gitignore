@@ -25,3 +25,6 @@
 /src/BrowserSnapshotCloudService/csx/Debug
 /src/Models/obj
 /src/Models/bin/Debug/netstandard2.0
+/src/Tests/bin/Debug/net6.0
+/src/Tests/obj
+/src/Web/appsettings.json

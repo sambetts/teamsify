@@ -17,8 +17,6 @@ export const Contact: React.FC<{}> = () => {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [emailSent, setEmailSent] = React.useState<boolean>(false);
 
-  const apiRoot: string | undefined = process.env.REACT_APP_API_BASE;
-
   const onCapChange = (value: string | null) => {
     setCaptchaValue(value);
   }
@@ -56,7 +54,7 @@ export const Contact: React.FC<{}> = () => {
       }
 
       setIsLoading(true);
-      fetch(apiRoot + "/api/TeamsApp/Contact?captchaResponseOnPage=" + captchaValue, {
+      fetch("/api/TeamsApp/Contact?captchaResponseOnPage=" + captchaValue, {
         mode: 'cors',
         method: "POST",
         headers: {
