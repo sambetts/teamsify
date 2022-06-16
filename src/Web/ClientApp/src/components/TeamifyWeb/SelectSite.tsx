@@ -10,6 +10,7 @@ export const SelectSite: React.FC<{ siteSelected: Function }> = (props) => {
   const [captchaValue, setCaptchaValue] = React.useState<string | null>();
   const [url, setUrl] = React.useState<string>("");
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const [urlError, setUrlError] = React.useState<boolean>(false);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = (e.target as HTMLInputElement).value;
@@ -20,11 +21,16 @@ export const SelectSite: React.FC<{ siteSelected: Function }> = (props) => {
     setCaptchaValue(value);
   }
 
-  const startSession = () => {
+  const startSession = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+
     let error = false;
-    var regexp = new RegExp('^[Hh][Tt][Tt][Pp][Ss]?://');
+    var regexp = new RegExp('^https?://');
     if (!regexp.test(url))
       error = true;
+    else
+      error = !url.toLowerCase().includes("https");
+    setUrlError(error);
 
     if (!error) {
       setIsLoading(true);
@@ -62,7 +68,7 @@ export const SelectSite: React.FC<{ siteSelected: Function }> = (props) => {
 
         <p>What web page do you want to pin to Teams? We'll create a Teams app with a personal-scope tab with this URL.</p>
         <TextField type="url" value={url} onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e)}
-          label="Your Teams app URL" required fullWidth />
+          label="Your Teams app URL (HTTPS only)" required fullWidth error={urlError} />
 
         <p style={{fontSize: 12}}>Please note: this should be a website owned by your organisation.</p>
         <p style={{ marginTop: 20 }}>Confirm you are a real person:</p>
@@ -70,7 +76,7 @@ export const SelectSite: React.FC<{ siteSelected: Function }> = (props) => {
 
         <p style={{marginTop: 50}}>Next we'll check if the page is compatible...</p>
         {!isLoading ?
-          <WizardButtons nextClicked={() => startSession()} nextText="Teamsify This Website"
+          <WizardButtons nextClicked={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => startSession(e)} nextText="Teamsify This Website"
             disabled={captchaValue === null || captchaValue === undefined} />
           :
           <Rings ariaLabel="loading-indicator" color='#43488F' />
